@@ -1,6 +1,6 @@
 # The script:
 
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/Amynuvcommander/main/Script"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/Amynuvcommander/main/Script"))()
 
 
 ___________________________________________
