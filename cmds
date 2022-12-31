@@ -1,5 +1,5 @@
 local args = {
-		[1] = ("fly,tpto,dex,gravity,speed,jump,sit,noclip,run,httprun,esp,re,time,infjump,ctp,btools,prefix"),
+		[1] = ("fly,tpto,dex,gravity,speed,jump,sit,noclip,run,httprun,esp,re,time,infjump,ctp,btools,prefix,cmds"),
 		[2] = "All"
 	}
 
