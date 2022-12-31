@@ -28,40 +28,14 @@ time [number]  (change the lightning time of day)
 infjump (allow you to infinite jump)
 ctp (Enable ctrl+clik to teleport)
 btools  (Give you btools HopperBin type)
-
-
-
-
-]]
-
-----------------------------------CREDITS AND CONTACTS:
-
-
---[[Credits:
-   Script idea: AlvinBlox
-   Execute event in executor command: LuLu,Rerubu,Yueliang,einsteinK
-   The rest: Amynuv
-   
-   
-   Contact Amynuv:
-   
-   Roblox Username:
-   Amynuv
-   
-   Roblox ID:
-   911404169
-   
-   E-Mail:
-   amynuv@gmail.com
-   
-   Discord:
-   Amynuv#5048
-   
-   Discord ID:
-   845649995003854858
+prefix [newprefix] (change the prefix of the script)
+cmds  (cmds list)
 
 
 ]]
+
+
+
 
 
 
@@ -115,12 +89,25 @@ btools  (Give you btools HopperBin type)
 
 
 
-game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="The Amynuv's Admin command script is ready!"; Duration=5;})
+game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="The Amynuv's Admin command script is ready, type @cmds to get help"; Duration=5;})
 
 
 
 
 local lplayer = game.Players.LocalPlayer
+
+
+cmds.cmds = function(sender,arguments)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/Amynuvcommander/main/cmds"))()
+end
+
+
+
+
+
+
+
+
 
 
 
@@ -215,8 +202,6 @@ end
 cmds.run = function(sender,arguments)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/executor.txt"))()
 end
-
-
 
 
 
@@ -438,6 +423,35 @@ end
 cmds.esp = function(sender,arguments)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/esp.txt"))()
 end
+
+
+
+
+
+
+
+
+
+
+
+cmds.prefix = function(sender,arguments)
+	prefix = arguments[1]
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
