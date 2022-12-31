@@ -1,11 +1,10 @@
-The script:
+# The script:
 
-```loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/Amynuvcommander/main/Script"))()```
+                  loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/Amynuvcommander/main/Script"))()
 
 
 ___________________________________________
-
-      Admin Commands List:
+## Admin Commands List:
 
 fly  (E to fly)   
 tpto [numberx,numbery,numberz]  (tp to a position) 
@@ -26,7 +25,7 @@ btools  (Give you btools HopperBin type)
 
 _____________________________________________
 
-       Contact and credits: 
+## Contact and credits: 
 
 Script idea: AlvinBlox  
 Some scripts: WeAreDevs 
