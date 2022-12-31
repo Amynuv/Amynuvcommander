@@ -30,11 +30,7 @@ _____________________________________________
 Script idea: AlvinBlox  
 Some scripts: WeAreDevs 
 The rest: Amynuv  
-Contact Amynuv:   
-   Roblox Username:  
-   Amynuv   
-   Roblox ID:  
-   911404169   
+Contact Amynuv:    
    E-Mail:  
    amynuv@gmail.com  
    Discord: 
