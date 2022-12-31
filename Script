@@ -414,7 +414,7 @@ cmds.noclip = function(sender,arguments)
 			end
 		end
 	end)
-	game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="N to noclip enabled (Key N to fly)"; Duration=5;})
+	game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="N to noclip enabled (Key N to noclip)"; Duration=5;})
 end
 
 
