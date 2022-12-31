@@ -1,0 +1,473 @@
+local cmds = {}           --Do not toutch
+----------------------------------------------------------------------------
+
+-----------------------------SETTINGS: 
+
+local prefix = "@"       --The prefix of every commands
+
+
+
+
+------------------------------COMMANDS:
+
+--[[
+
+fly  (E to fly)
+tpto [numberx,numbery,numberz]  (tp to a position)
+dex (dex explorer)
+gravity [number]  (change the gravity of the game)
+speed [number]    (change your walkspeed)
+jump [number]  (change your jumppower)
+sit  (sit you)
+noclip  (N to noclip)
+run (show a script executor)
+httprun [httplink]  loadstring a http raw script
+esp (show players)
+re (kill you)
+time [number]  (change the lightning time of day)
+infjump (allow you to infinite jump)
+ctp (Enable ctrl+clik to teleport)
+btools  (Give you btools HopperBin type)
+
+
+
+
+]]
+
+----------------------------------CREDITS AND CONTACTS:
+
+
+--[[Credits:
+   Script idea: AlvinBlox
+   Execute event in executor command: LuLu,Rerubu,Yueliang,einsteinK
+   The rest: Amynuv
+   
+   
+   Contact Amynuv:
+   
+   Roblox Username:
+   Amynuv
+   
+   Roblox ID:
+   911404169
+   
+   E-Mail:
+   amynuv@gmail.com
+   
+   Discord:
+   Amynuv#5048
+   
+   Discord ID:
+   845649995003854858
+
+
+]]
+
+
+
+
+
+
+
+
+---_______________________________BEGINING OF THE SCRIPT:______________________________________________
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--Do not toutch
+
+---_______________________________________________________________________________________________________
+
+
+
+
+
+
+game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="The Amynuv's Admin command script is ready!"; Duration=5;})
+
+
+
+
+local lplayer = game.Players.LocalPlayer
+
+
+
+cmds.sit = function(sender, arguments)
+	lplayer.Character.Humanoid.Sit = true
+end
+
+
+
+
+
+
+
+
+
+cmds.speed = function(sender,arguments)
+	local speed = arguments[1]
+	lplayer.Character.Humanoid.WalkSpeed = speed
+end
+
+
+cmds.jump = function(sender,arguments)
+	local speed = arguments[1]
+	lplayer.Character.Humanoid.UseJumpPower = true
+	lplayer.Character.Humanoid.JumpPower = speed
+end
+
+
+
+cmds.gravity = function(sender, arguments)
+	local grav = arguments[1]
+	if grav then
+		game:GetService("Workspace").Gravity = tonumber(grav)
+	end
+end
+
+cmds.time = function(sender,arguments)
+	local timeto = tonumber(arguments[1])
+	if arguments[1] then
+		local t = game:GetService("Lighting")
+		if t then
+			t.ClockTime = timeto
+		end
+	end
+end
+
+
+
+cmds.re = function(sender, arguments)
+	lplayer.Character.Humanoid.Health = 0
+end
+
+
+cmds.goto = function(sender, arguments)
+	local player = arguments[1]
+	lplayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace"):FindFirstChild(player).HumanoidRootPart.CFrame
+end
+
+cmds.btools = function(sender, arguments)
+	local backpack = game:GetService("Players").LocalPlayer.Backpack
+
+	local hammer = Instance.new("HopperBin")
+	hammer.Name = "Hammer"
+	hammer.BinType = 4
+	hammer.Parent = backpack
+
+	local cloneTool = Instance.new("HopperBin")
+	cloneTool.Name = "Clone"
+	cloneTool.BinType = 3
+	cloneTool.Parent = backpack
+
+	local grabTool = Instance.new("HopperBin")
+	grabTool.Name = "Grab"
+	grabTool.BinType = 2
+	grabTool.Parent = backpack
+end
+
+
+cmds.dex = function(sender, arguments)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/dex.txt"))()
+end
+
+cmds.httprun = function(sender,arguments)
+	local scri = arguments[1]
+	loadstring(game:HttpGet(scri))()
+end
+
+
+
+
+
+cmds.run = function(sender,arguments)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/executor.txt"))()
+end
+
+
+
+
+
+
+cmds.tpto = function(sender, arguments)
+	local x = arguments[1]
+	local y = arguments[2]
+	local z = arguments[3]
+	if x and y and z then
+		lplayer.Character.HumanoidRootPart.CFrame = CFrame.new(x,y,z)
+	end
+end
+
+
+
+cmds.clear = function(sender, arguments)
+	lplayer.Backpack:ClearAllChildren()
+end
+
+
+
+
+
+
+
+
+
+
+
+cmds.infjump = function(sender,arguments)
+	_G.infinjump = not _G.infinjump
+
+	if _G.infinJumpStarted == nil then
+		--Ensures this only runs once to save resources
+		_G.infinJumpStarted = true
+
+
+
+		--The actual infinite jump
+		local plr = game:GetService('Players').LocalPlayer
+		local m = plr:GetMouse()
+		m.KeyDown:connect(function(k)
+			if _G.infinjump then
+				if k:byte() == 32 then
+					local humanoid = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass('Humanoid')
+					humanoid:ChangeState('Jumping')
+					wait()
+					humanoid:ChangeState('Seated')
+				end
+			end
+		end)
+	end
+end
+
+
+
+
+
+cmds.ctp = function(sender,arguments)
+	if _G.WRDClickTeleport == nil then
+		_G.WRDClickTeleport = true
+
+		local player = game:GetService("Players").LocalPlayer
+		local UserInputService = game:GetService("UserInputService")
+		--Wanted to avoid using mouse instance, but UIS^ is very tedious to get mouse hit position
+		local mouse = player:GetMouse()
+
+		--Waits until the player's mouse is found
+		repeat wait() until mouse
+
+		UserInputService.InputBegan:Connect(function(input, gameProcessed)
+			if input.UserInputType == Enum.UserInputType.MouseButton1 then
+				--Only click teleport if the toggle is enabled
+				if _G.WRDClickTeleport and UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then
+					player.Character:MoveTo(Vector3.new(mouse.Hit.x, mouse.Hit.y, mouse.Hit.z)) 
+				end
+			end
+		end)
+		--Just toggle instead of re-executing the script
+	else
+		_G.WRDClickTeleport = not _G.WRDClickTeleport
+		--Notify
+		if _G.WRDClickTeleport then
+			game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="Click teleport enabled (Ctrl+click to teleport)"; Duration=5;})
+		else
+			game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="Click teleport disabled"; Duration=5;})
+		end
+	end
+end
+
+
+
+
+
+
+cmds.fly = function(sender,aguments)
+	repeat wait() 
+	until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Head") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid") 
+	local mouse = game.Players.LocalPlayer:GetMouse() 
+	repeat wait() until mouse
+	local plr = game.Players.LocalPlayer 
+	local torso = plr.Character.Head 
+	local flying = false
+	local deb = true 
+	local ctrl = {f = 0, b = 0, l = 0, r = 0} 
+	local lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+	local maxspeed = 400 
+	local speed = 5000 
+
+	function Fly() 
+		local bg = Instance.new("BodyGyro", torso) 
+		bg.P = 9e4 
+		bg.maxTorque = Vector3.new(9e9, 9e9, 9e9) 
+		bg.cframe = torso.CFrame 
+		local bv = Instance.new("BodyVelocity", torso) 
+		bv.velocity = Vector3.new(0,0.1,0) 
+		bv.maxForce = Vector3.new(9e9, 9e9, 9e9) 
+		repeat wait() 
+			plr.Character.Humanoid.PlatformStand = true 
+			if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then 
+				speed = speed+.5+(speed/maxspeed) 
+				if speed > maxspeed then 
+					speed = maxspeed 
+				end 
+			elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then 
+				speed = speed-1 
+				if speed < 0 then 
+					speed = 0 
+				end 
+			end 
+			if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then 
+				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+				lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r} 
+			elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then 
+				bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed 
+			else 
+				bv.velocity = Vector3.new(0,0.1,0) 
+			end 
+			bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0) 
+		until not flying 
+		ctrl = {f = 0, b = 0, l = 0, r = 0} 
+		lastctrl = {f = 0, b = 0, l = 0, r = 0} 
+		speed = 0 
+		bg:Destroy() 
+		bv:Destroy() 
+		plr.Character.Humanoid.PlatformStand = false 
+	end 
+	mouse.KeyDown:connect(function(key) 
+		if key:lower() == "e" then 
+			if flying then flying = false 
+			else 
+				flying = true 
+				Fly() 
+			end 
+		elseif key:lower() == "w" then 
+			ctrl.f = 1 
+		elseif key:lower() == "s" then 
+			ctrl.b = -1 
+		elseif key:lower() == "a" then 
+			ctrl.l = -1 
+		elseif key:lower() == "d" then 
+			ctrl.r = 1 
+		end 
+	end) 
+	mouse.KeyUp:connect(function(key) 
+		if key:lower() == "w" then 
+			ctrl.f = 0 
+		elseif key:lower() == "s" then 
+			ctrl.b = 0 
+		elseif key:lower() == "a" then 
+			ctrl.l = 0 
+		elseif key:lower() == "d" then 
+			ctrl.r = 0 
+		end 
+	end)
+	Fly()
+	game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="E to fly enabled (Key E to fly)"; Duration=5;})
+end
+
+
+cmds.noclip = function(sender,arguments)
+	local noclipplayer = game:GetService("Players").LocalPlayer
+	local noclipmouse = noclipplayer:GetMouse()
+
+	local donoclip = false
+	local noclip = false
+
+	function b_noclip(key)
+		if (key == "n") then
+			if noclip == false then
+				donoclip = true
+
+				noclip = true
+			elseif noclip == true then
+				donoclip = false
+
+				noclip = false
+			end
+		end
+	end
+
+	noclipmouse.KeyDown:connect(b_noclip)
+
+	game:GetService("Players").LocalPlayer.Character.Head.Touched:connect(function(obj)
+		if obj ~= workspace.Terrain then
+			if donoclip == true then
+				obj.CanCollide = false
+			else
+				obj.CanCollide = true
+			end
+		end
+	end)
+	game.StarterGui:SetCore("SendNotification", {Title="Amynuv"; Text="N to noclip enabled (Key N to fly)"; Duration=5;})
+end
+
+
+
+
+cmds.esp = function(sender,arguments)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/esp.txt"))()
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lplayer.Chatted:Connect(function(message,recipient)
+	message = string.lower(message)
+	local splitString = message:split(" ")
+	local slashCommand = splitString[1]
+	local cmd = slashCommand:split(prefix)
+	local cmdName = cmd[2]
+	if cmds[cmdName] then
+		local arguments = {}
+		for i = 2, #splitString, 1 do
+			table.insert(arguments,splitString[i])
+		end
+		cmds[cmdName](lplayer,arguments)
+	end
+end)
+
+
+
+--Script made by Amynuv
+
