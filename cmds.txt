@@ -1,0 +1,16 @@
+local args = {
+		[1] = ("fly,tpto,dex,gravity,speed,jump,sit,noclip,run,httprun,esp,re,time,infjump,ctp,btools,prefix"),
+		[2] = "All"
+
+
+
+
+
+
+
+
+
+
+	}
+
+	game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
