@@ -29,11 +29,4 @@ _____________________________________________
 
 Script idea: AlvinBlox  
 Some scripts: WeAreDevs 
-The rest: Amynuv  
-Contact Amynuv:    
-   E-Mail:  
-   amynuv@gmail.com  
-   Discord: 
-   Amynuv#5048 
-   Discord ID: 
-   845649995003854858   
+The rest: Amynuv   
