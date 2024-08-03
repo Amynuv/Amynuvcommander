@@ -30,6 +30,7 @@ ctp (Enable ctrl+clik to teleport)
 btools  (Give you btools HopperBin type)
 prefix [newprefix] (change the prefix of the script)
 cmds  (cmds list)
+yield (start inf yield)
 
 
 ]]
@@ -188,6 +189,10 @@ end
 
 cmds.dex = function(sender, arguments)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/dex.txt"))()
+end
+
+cmds.yeild = function(sender, arguments)
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/InfYeild"))()
 end
 
 cmds.httprun = function(sender,arguments)
