@@ -191,7 +191,7 @@ cmds.dex = function(sender, arguments)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/dex.txt"))()
 end
 
-cmds.yeild = function(sender, arguments)
+cmds.yield = function(sender, arguments)
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/Amynuv/RobloxStuff/main/InfYeild"))()
 end
 
