@@ -22,6 +22,7 @@ time [number]  (change the lightning time of day)
 infjump (allow you to infinite jump)   
 ctp (Enable ctrl+clik to teleport)  
 btools  (Give you btools HopperBin type)  
+yield (start inf yield)
 
 _____________________________________________
 
