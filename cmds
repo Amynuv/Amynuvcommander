@@ -33,4 +33,5 @@ wait(5)
 game.StarterGui:SetCore("SendNotification", {Title="esp"; Text="esp players"; Duration=5;})
 wait(5)
 game.StarterGui:SetCore("SendNotification", {Title="dex"; Text="give dex exployer gui"; Duration=5;})
-
+wait(5)
+game.StarterGui:SetCore("SendNotification", {Title="yield"; Text="start inf yield"; Duration=5;})
